@@ -2448,7 +2448,7 @@ html:has(.drawer-toggle:checked) {
 
 .text-blue {
   --tw-text-opacity: 1;
-  color: rgb(31 182 255 / var(--tw-text-opacity));
+  color: rgb(74 76 108 / var(--tw-text-opacity));
 }
 
 .text-info {

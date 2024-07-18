@@ -8,7 +8,14 @@ module.exports = {
         padding: "1rem",
       },
       colors: {
-        'blue': '#1fb6ff'
+        'blue': {
+          light: '#7C7EA1',
+          DEFAULT: '#4A4C6C'
+        },
+        "sludge":{
+          light: '#9FA16D',
+          DEFAULT: '#77794E'
+        }
       },
       fontFamily: {
         sans: ["Roboto"],
