@@ -5,9 +5,11 @@ module.exports = {
     extend: {
       container: {
         center: true,
-        padding: "2rem",
+        padding: "1rem",
       },
-
+      colors: {
+        'blue': '#1fb6ff'
+      },
       fontFamily: {
         sans: ["Roboto"],
       },
