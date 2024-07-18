@@ -22,166 +22,166 @@
     <title>Shoes-shop</title>
   </head>
   <body>
+    <div class="bg-blue text-center">
+      <p class="py-2.5 text-white">New here? Save 20% with code: YR24</p>
+    </div>
     <header class="container">
-      <div>
-        <div class="drawer">
-          <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
-          <div class="drawer-content flex flex-col">
-            <!-- Navbar -->
-            <div class="navbar bg-white w-full">
-              <div class="flex-none md:hidden">
-                <label
-                  for="my-drawer-3"
-                  aria-label="open sidebar"
-                  class="btn btn-square btn-ghost"
+        <!-- Navbar -->
+      <div class="drawer">
+        <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content flex flex-col">
+          <!-- Navbar -->
+          <div class="navbar bg-white w-full">
+            <div class="flex-none md:hidden">
+              <label
+                for="my-drawer-3"
+                aria-label="open sidebar"
+                class="btn btn-square btn-ghost"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  class="inline-block h-6 w-6 stroke-current"
                 >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  ></path>
+                </svg>
+              </label>
+            </div>
+            <div class="mx-1 ps-1 flex-1 md:flex-none">
+              <img
+                src="./assets/img/my-logo.png"
+                alt="logo"
+                class="w-12 h-12 hidden md:block"
+              />
+              <h1 class="font-bold text-lg p-0.5 md:hidden">Khanloo shop</h1>
+            </div>
+            <div class="hidden md:block flex-1">
+              <ul
+                class="menu menu-horizontal font-extrabold text-lg italic p-1"
+              >
+                <!-- Navbar menu content here -->
+                <li><a>Women</a></li>
+                <li><a>Men</a></li>
+                <li><a>Kids</a></li>
+                <li><a>Classic</a></li>
+                <li><a>Sale</a></li>
+              </ul>
+            </div>
+            <div class="flex-none">
+              <!-- Open the modal using ID.showModal() method -->
+              <div>
+                <button class="btn btn-ghost" onclick="my_modal_2.showModal()">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
                     fill="none"
                     viewBox="0 0 24 24"
-                    class="inline-block h-6 w-6 stroke-current"
+                    stroke="currentColor"
                   >
                     <path
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M4 6h16M4 12h16M4 18h16"
-                    ></path>
-                  </svg>
-                </label>
-              </div>
-              <div class="mx-1 ps-1 flex-1 md:flex-none">
-                <img
-                  src="./assets/img/my-logo.png"
-                  alt="logo"
-                  class="w-12 h-12 hidden md:block"
-                />
-                <h1 class="font-bold text-lg p-0.5 md:hidden">Khanloo shop</h1>
-              </div>
-              <div class="hidden md:block flex-1">
-                <ul
-                  class="menu menu-horizontal font-extrabold text-lg italic p-1"
-                >
-                  <!-- Navbar menu content here -->
-                  <li><a>Women</a></li>
-                  <li><a>Men</a></li>
-                  <li><a>Kids</a></li>
-                  <li><a>Classic</a></li>
-                  <li><a>Sale</a></li>
-                </ul>
-              </div>
-              <div class="flex-none">
-                <!-- Open the modal using ID.showModal() method -->
-                <div>
-                  <button
-                    class="btn btn-ghost"
-                    onclick="my_modal_2.showModal()"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                      />
-                    </svg>
-                  </button>
-
-                  <dialog id="my_modal_2" class="modal">
-                    <div class="modal-box">
-                      <form method="dialog">
-                        <button
-                          class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-                        >
-                          ✕
-                        </button>
-                      </form>
-                      <h3 class="text-lg font-bold">Hello!</h3>
-                      <p class="py-4">
-                        Press ESC key or click outside to close
-                      </p>
-                    </div>
-                    <form method="dialog" class="modal-backdrop">
-                      <button>close</button>
-                    </form>
-                  </dialog>
-                </div>
-                <div class="dropdown dropdown-end">
-                  <div
-                    tabindex="0"
-                    role="button"
-                    class="btn btn-ghost btn-circle avatar"
-                  >
-                    <div class="w-10 rounded-full">
-                      <img
-                        alt="user"
-                        src="./assets/img/color-burst-3840x2160-6654.jpg"
-                      />
-                    </div>
-                  </div>
-                  <ul
-                    tabindex="0"
-                    class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-                  >
-                    <li>
-                      <a class="justify-between">
-                        Profile
-                        <span class="badge bg-red-500 text-white">New</span>
-                      </a>
-                    </li>
-                    <li><a>Settings</a></li>
-                    <li><a>Logout</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <!-- Page content here -->
-          </div>
-          <div class="drawer-side">
-            <label
-              for="my-drawer-3"
-              aria-label="close sidebar"
-              class="drawer-overlay"
-            ></label>
-            <ul class="menu bg-base-200 min-h-full w-80 p-5 font-extrabold">
-              <div class="flex justify-end">
-                <label
-                  for="my-drawer-3"
-                  aria-label="close sidebar"
-                  class="drawer-overlay btn btn-square btn-ghost w-10"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="size-6"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M6 18 18 6M6 6l12 12"
+                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                     />
                   </svg>
-                </label>
+                </button>
+
+                <dialog id="my_modal_2" class="modal">
+                  <div class="modal-box">
+                    <form method="dialog">
+                      <button
+                        class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                      >
+                        ✕
+                      </button>
+                    </form>
+                    <h3 class="text-lg font-bold">Hello!</h3>
+                    <p class="py-4">Press ESC key or click outside to close</p>
+                  </div>
+                  <form method="dialog" class="modal-backdrop">
+                    <button>close</button>
+                  </form>
+                </dialog>
               </div>
-              <!-- Sidebar content here -->
-              <li><a>Women</a></li>
-              <li><a>Men</a></li>
-              <li><a>Kids</a></li>
-              <li><a>Classic</a></li>
-              <li><a>Sale</a></li>
-            </ul>
+              <!-- avatar -->
+              <div class="dropdown dropdown-end">
+                <div
+                  tabindex="0"
+                  role="button"
+                  class="btn btn-ghost btn-circle avatar"
+                >
+                  <div class="w-10 rounded-full">
+                    <img
+                      alt="user"
+                      src="./assets/img/color-burst-3840x2160-6654.jpg"
+                    />
+                  </div>
+                </div>
+                <ul
+                  tabindex="0"
+                  class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                >
+                  <li>
+                    <a class="justify-between">
+                      Profile
+                      <span class="badge bg-red-500 text-white">New</span>
+                    </a>
+                  </li>
+                  <li><a>Settings</a></li>
+                  <li><a>Logout</a></li>
+                </ul>
+              </div>
+            </div>
           </div>
+          <!-- Page content here -->
+        </div>
+        <div class="drawer-side">
+          <label
+            for="my-drawer-3"
+            aria-label="close sidebar"
+            class="drawer-overlay"
+          ></label>
+          <ul class="menu bg-base-200 min-h-full w-80 p-5 font-extrabold">
+            <div class="flex justify-end">
+              <label
+                for="my-drawer-3"
+                aria-label="close sidebar"
+                class="drawer-overlay btn btn-square btn-ghost w-10"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18 18 6M6 6l12 12"
+                  />
+                </svg>
+              </label>
+            </div>
+            <!-- Sidebar content here -->
+            <li><a>Women</a></li>
+            <li><a>Men</a></li>
+            <li><a>Kids</a></li>
+            <li><a>Classic</a></li>
+            <li><a>Sale</a></li>
+          </ul>
         </div>
       </div>
+
+      <!-- img -->
       <div></div>
     </header>
     <section></section>
