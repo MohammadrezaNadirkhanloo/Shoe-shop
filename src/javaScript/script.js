@@ -92,6 +92,7 @@ class UI {
         const product = Local.getproduct(e.target.dataset.id);
         cards.push({ ...product, number: 1 });
         Local.setCard(cards);
+        this.displayCard()
       });
     });
   }
