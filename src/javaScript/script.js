@@ -182,7 +182,7 @@ class UI {
     const total = productsCart.reduce((acc, item) => {
       return acc + item.price * item.number;
     }, 0);
-    document.getElementById("totalCart").innerText = total;
+    document.getElementById("totalCart").innerText = (total).toFixed(2);
   }
 }
 
