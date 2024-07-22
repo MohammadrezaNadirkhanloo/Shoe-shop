@@ -73,7 +73,7 @@ class UI {
     });
   }
 
-  addCartItem() {
+  static addCartItem() {
     const btnAddCart = document.querySelectorAll(".by-now-btn");
     const arrayAddCartBtn = [...btnAddCart];
     let carts = Local.getCart() || [];
@@ -84,6 +84,9 @@ class UI {
       if (checkBtn) {
         btn.innerHTML = "In Cart";
         btn.disabled = true;
+      }else{
+        btn.innerHTML = "Buy Now";
+        btn.disabled = false;
       }
       btn.addEventListener("click", (e) => {
         e.target.innerHTML = "In Cart";
@@ -97,14 +100,19 @@ class UI {
     });
   }
 
-  displayCart() {
+  static displayCart() {
     let products = Local.getCart() || [];
-
     if (products.length === 0) {
+      document.getElementById("cartEmpty").classList.remove("hidden");
       document.getElementById("cartEmpty").classList.add("flex");
+      document.getElementById("listCart").classList.add("hidden");
+
       return;
     }
+    document.getElementById("listCart").classList.remove("hidden");
+
     document.getElementById("cartEmpty").classList.add("hidden");
+    document.getElementById("listCart").classList.add("flex");
 
     let html = "";
     products.forEach((item) => {
@@ -156,12 +164,13 @@ class UI {
                           </button>
                         </div>
                         <div>
-                          <button class="btn btn-ghost btn-delete" data-dalete= ${item.id}>
+                          <button class="btn btn-ghost btn-delete" data-delete= ${item.id}>
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               viewBox="0 0 24 24"
                               fill="currentColor"
-                              class="size-6"
+                              class="size-6 "
+                              style="pointer-events: none;"
                             >
                               <path
                                 fill-rule="evenodd"
@@ -177,12 +186,35 @@ class UI {
     });
   }
 
+  static eventDelete() {
+    let dataItem = Local.getCart();
+    if (!dataItem) return;
+    const itemCart = document.querySelectorAll(".btn-delete");
+    const arrItemCart = [...itemCart];
+    arrItemCart.forEach((item) => {
+      item.addEventListener("click", (e) => {
+        if (!dataItem) return;
+        dataItem = dataItem.filter((data) => {
+          return data.id !== Number(e.target.dataset.delete);
+        });
+        Local.setCart(dataItem);
+        this.showTotal();
+        this.displayCart();
+        this.addCartItem();
+        this.eventDelete();
+      });
+    });
+  }
+
   static showTotal() {
     let productsCart = Local.getCart() || [];
+    if (productsCart.length === 0) {
+      return (document.getElementById("totalCart").innerText = 0);
+    }
     const total = productsCart.reduce((acc, item) => {
       return acc + item.price * item.number;
     }, 0);
-    document.getElementById("totalCart").innerText = (total).toFixed(2);
+    document.getElementById("totalCart").innerText = total.toFixed(2);
   }
 }
 
@@ -212,10 +244,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const showItem = new UI();
   showItem.displayProducts(datas);
   Local.setlLocalStorage(datas);
-  showItem.addCartItem();
-  showItem.displayCart();
+  UI.addCartItem();
+  UI.displayCart();
 });
 
 btnCart.addEventListener("click", () => {
   UI.showTotal();
+  UI.eventDelete();
 });
