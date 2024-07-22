@@ -1,6 +1,6 @@
 import { products } from "./data.js";
 
-// let cards = [];
+const btnCart = document.getElementById("btnCart");
 
 // get data
 class Products {
@@ -73,32 +73,39 @@ class UI {
     });
   }
 
-  addCardItem() {
-    const btnAddCard = document.querySelectorAll(".by-now-btn");
-    const arrayAddCardBtn = [...btnAddCard];
-    let cards = Local.getCard() || [];
+  addCartItem() {
+    const btnAddCart = document.querySelectorAll(".by-now-btn");
+    const arrayAddCartBtn = [...btnAddCart];
+    let carts = Local.getCart() || [];
 
-    arrayAddCardBtn.forEach((btn) => {
+    arrayAddCartBtn.forEach((btn) => {
       const id = Number(btn.dataset.id);
-      const checkBtn = cards.find((item) => item.id === id);
+      const checkBtn = carts.find((item) => item.id === id);
       if (checkBtn) {
-        btn.innerHTML = "In Card";
+        btn.innerHTML = "In Cart";
         btn.disabled = true;
       }
       btn.addEventListener("click", (e) => {
-        e.target.innerHTML = "In Card";
+        e.target.innerHTML = "In Cart";
         e.target.disabled = true;
 
         const product = Local.getproduct(e.target.dataset.id);
-        cards.push({ ...product, number: 1 });
-        Local.setCard(cards);
-        this.displayCard()
+        carts.push({ ...product, number: 1 });
+        Local.setCart(carts);
+        this.displayCart();
       });
     });
   }
 
-  displayCard() {
-    let products = Local.getCard();
+  displayCart() {
+    let products = Local.getCart() || [];
+
+    if (products.length === 0) {
+      document.getElementById("cartEmpty").classList.add("flex");
+      return;
+    }
+    document.getElementById("cartEmpty").classList.add("hidden");
+
     let html = "";
     products.forEach((item) => {
       html += `<div class="flex items-center justify-around my-2">
@@ -166,9 +173,11 @@ class UI {
                         </div>
                       </div>
         `;
-      document.getElementById("listCard").innerHTML = html;
+      document.getElementById("listCart").innerHTML = html;
     });
   }
+
+
 }
 
 // local storage
@@ -181,12 +190,12 @@ class Local {
     return data.find((item) => item.id === Number(id));
   }
 
-  static setCard(data) {
-    localStorage.setItem("cards", JSON.stringify(data));
+  static setCart(data) {
+    localStorage.setItem("carts", JSON.stringify(data));
   }
 
-  static getCard() {
-    const datas = JSON.parse(localStorage.getItem("cards"));
+  static getCart() {
+    const datas = JSON.parse(localStorage.getItem("carts"));
     return datas;
   }
 }
@@ -197,6 +206,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const showItem = new UI();
   showItem.displayProducts(datas);
   Local.setlLocalStorage(datas);
-  showItem.addCardItem();
-  showItem.displayCard()
+  showItem.addCartItem();
+  showItem.displayCart();
+});
+
+btnCart.addEventListener("click", () => {
+  UI.showTotal();
 });
