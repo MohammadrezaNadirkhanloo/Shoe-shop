@@ -1,6 +1,9 @@
 import { products } from "./data.js";
 
 const btnCart = document.getElementById("btnCart");
+const cartEmpty = document.getElementById("cartEmpty");
+const listCart = document.getElementById("listCart");
+const totalCart = document.getElementById("totalCart");
 
 // get data
 class Products {
@@ -84,7 +87,7 @@ class UI {
       if (checkBtn) {
         btn.innerHTML = "In Cart";
         btn.disabled = true;
-      }else{
+      } else {
         btn.innerHTML = "Buy Now";
         btn.disabled = false;
       }
@@ -103,16 +106,15 @@ class UI {
   static displayCart() {
     let products = Local.getCart() || [];
     if (products.length === 0) {
-      document.getElementById("cartEmpty").classList.remove("hidden");
-      document.getElementById("cartEmpty").classList.add("flex");
-      document.getElementById("listCart").classList.add("hidden");
+      cartEmpty.classList.remove("hidden");
+      cartEmpty.classList.add("flex");
+      listCart.classList.add("hidden");
 
       return;
     }
-    document.getElementById("listCart").classList.remove("hidden");
-
-    document.getElementById("cartEmpty").classList.add("hidden");
-    document.getElementById("listCart").classList.add("flex");
+    cartEmpty.classList.add("hidden");
+    listCart.classList.remove("hidden");
+    listCart.classList.add("flex");
 
     let html = "";
     products.forEach((item) => {
@@ -209,12 +211,12 @@ class UI {
   static showTotal() {
     let productsCart = Local.getCart() || [];
     if (productsCart.length === 0) {
-      return (document.getElementById("totalCart").innerText = 0);
+      return (totalCart.innerText = 0);
     }
     const total = productsCart.reduce((acc, item) => {
       return acc + item.price * item.number;
     }, 0);
-    document.getElementById("totalCart").innerText = total.toFixed(2);
+    totalCart.innerText = total.toFixed(2);
   }
 }
 
