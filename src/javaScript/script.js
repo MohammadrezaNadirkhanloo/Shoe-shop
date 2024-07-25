@@ -205,42 +205,41 @@ class UI {
         this.showTotal();
         this.displayCart();
         this.addCartItem();
-        this.eventChengeNumber();
+        this.eventChangeNumber();
         this.eventDelete();
       });
     });
   }
 
-  static eventChengeNumber() {
-    const data = document.querySelectorAll(".changeNumber");
+  static eventChangeNumber() {
+    const elementNumber = document.querySelectorAll(".changeNumber");
     let dataItem = Local.getCart();
-    data.forEach((item) => {
+    elementNumber.forEach((item) => {
       item.addEventListener("click", (e) => {
         const typeOfOperation = Object.keys(e.target.dataset).join("");
         if (typeOfOperation === "up") {
-          const obj = dataItem.map((item) => {
+          const newData = dataItem.map((item) => {
             if (item.id === Number(e.target.dataset.up)) {
               item.number += 1;
             }
             return item;
           });
-          Local.setCart(obj);
+          Local.setCart(newData);
         } else {
-          console.log("ssss");
-          const objj = dataItem.map((item) => {
+          const newData = dataItem.map((item) => {
             if (item.id === Number(e.target.dataset.down)) {
               item.number -= 1;
             }
             return item;
           });
-          Local.setCart(objj);
+          Local.setCart(newData);
         }
 
         this.showTotal();
         this.displayCart();
         this.eventDelete();
 
-        this.eventChengeNumber();
+        this.eventChangeNumber();
       });
     });
   }
@@ -289,5 +288,5 @@ document.addEventListener("DOMContentLoaded", () => {
 btnCart.addEventListener("click", () => {
   UI.showTotal();
   UI.eventDelete();
-  UI.eventChengeNumber();
+  UI.eventChangeNumber();
 });
