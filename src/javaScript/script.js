@@ -205,6 +205,7 @@ class UI {
         this.showTotal();
         this.displayCart();
         this.addCartItem();
+        this.eventChengeNumber();
         this.eventDelete();
       });
     });
@@ -223,12 +224,22 @@ class UI {
             }
             return item;
           });
-          console.log(obj);
           Local.setCart(obj);
-          this.showTotal();
+        } else {
+          console.log("ssss");
+          const objj = dataItem.map((item) => {
+            if (item.id === Number(e.target.dataset.down)) {
+              item.number -= 1;
+            }
+            return item;
+          });
+          Local.setCart(objj);
         }
 
+        this.showTotal();
         this.displayCart();
+        this.eventDelete();
+
         this.eventChengeNumber();
       });
     });
