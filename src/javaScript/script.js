@@ -104,7 +104,7 @@ class UI {
   }
 
   static displayCart() {
-    let products = Local.getCart() || [];
+    const products = Local.getCart() || [];
     if (products.length === 0) {
       cartEmpty.classList.remove("hidden");
       cartEmpty.classList.add("flex");
@@ -131,7 +131,7 @@ class UI {
                           <p class="font-medium">${item.price} $</p>
                         </div>
                         <div class="flex flex-col items-center">
-                          <button data-up= ${item.id}>
+                          <button data-up= ${item.id} class="changeNumber ">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
@@ -139,6 +139,7 @@ class UI {
                               stroke-width="1.5"
                               stroke="currentColor"
                               class="size-5 text-green-500"
+                              style="pointer-events: none;"
                             >
                               <path
                                 stroke-linecap="round"
@@ -148,7 +149,7 @@ class UI {
                             </svg>
                           </button>
                           <p class="number">${item.number}</p>
-                          <button data-down= ${item.id}>
+                          <button data-down= ${item.id} class="changeNumber ">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
@@ -156,6 +157,7 @@ class UI {
                               stroke-width="1.5"
                               stroke="currentColor"
                               class="size-5 text-red-500"
+                              style="pointer-events: none;"
                             >
                               <path
                                 stroke-linecap="round"
@@ -208,6 +210,29 @@ class UI {
     });
   }
 
+  static eventChengeNumber() {
+    const data = document.querySelectorAll(".changeNumber");
+    let dataItem = Local.getCart();
+    data.forEach((item) => {
+      item.addEventListener("click", (e) => {
+        const typeOfOperation = Object.keys(e.target.dataset).join("");
+        if (typeOfOperation === "up") {
+          const obj = dataItem.map((item) => {
+            if (item.id === Number(e.target.dataset.up)) {
+              item.number += 1;
+            }
+            return item;
+          });
+          console.log(obj);
+          Local.setCart(obj);
+          this.showTotal();
+        }
+
+        this.displayCart();
+        this.eventChengeNumber();
+      });
+    });
+  }
   static showTotal() {
     let productsCart = Local.getCart() || [];
     if (productsCart.length === 0) {
@@ -253,4 +278,5 @@ document.addEventListener("DOMContentLoaded", () => {
 btnCart.addEventListener("click", () => {
   UI.showTotal();
   UI.eventDelete();
+  UI.eventChengeNumber();
 });
