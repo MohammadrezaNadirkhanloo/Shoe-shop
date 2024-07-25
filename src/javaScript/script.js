@@ -228,7 +228,12 @@ class UI {
         } else {
           const newData = dataItem.map((item) => {
             if (item.id === Number(e.target.dataset.down)) {
-              item.number -= 1;
+              if(item.number >=2){
+
+                item.number -= 1;
+              }else{
+                alert("Error")
+              }
             }
             return item;
           });
@@ -238,7 +243,6 @@ class UI {
         this.showTotal();
         this.displayCart();
         this.eventDelete();
-
         this.eventChangeNumber();
       });
     });
