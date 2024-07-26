@@ -5,7 +5,7 @@ const cartEmpty = document.getElementById("cartEmpty");
 const listCart = document.getElementById("listCart");
 const totalCart = document.getElementById("totalCart");
 
-// get data
+// get data backend
 class Products {
   getproducts() {
     return products;
@@ -14,6 +14,7 @@ class Products {
 
 // show data ui
 class UI {
+  //Show products
   displayProducts(products) {
     let html = "";
     products.forEach((element) => {
@@ -76,6 +77,7 @@ class UI {
     });
   }
 
+  //Add product to cart
   static addCartItem() {
     const btnAddCart = document.querySelectorAll(".by-now-btn");
     const arrayAddCartBtn = [...btnAddCart];
@@ -103,6 +105,7 @@ class UI {
     });
   }
 
+  //Show the products in the shopping cart
   static displayCart() {
     const products = Local.getCart() || [];
     if (products.length === 0) {
@@ -190,6 +193,7 @@ class UI {
     });
   }
 
+  //Remove the product from the shopping cart
   static eventDelete() {
     let dataItem = Local.getCart();
     if (!dataItem) return;
@@ -211,6 +215,7 @@ class UI {
     });
   }
 
+  //Changing the number of products in the shopping cart
   static eventChangeNumber() {
     const elementNumber = document.querySelectorAll(".changeNumber");
     let dataItem = Local.getCart();
@@ -247,6 +252,8 @@ class UI {
       });
     });
   }
+
+  //Calculate the price of the products in the shopping cart
   static showTotal() {
     let productsCart = Local.getCart() || [];
     if (productsCart.length === 0) {
@@ -279,6 +286,7 @@ class Local {
   }
 }
 
+//When the page loads
 document.addEventListener("DOMContentLoaded", () => {
   const product = new Products();
   const datas = product.getproducts();
@@ -289,6 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
   UI.displayCart();
 });
 
+//When he clicked on the shopping cart button
 btnCart.addEventListener("click", () => {
   UI.showTotal();
   UI.eventDelete();
