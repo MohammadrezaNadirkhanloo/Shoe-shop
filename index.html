@@ -108,7 +108,10 @@
                       </button>
                     </form>
                     <h3 class="text-lg font-bold">Cart</h3>
-                    <div id="cartEmpty" class=" flex-col justify-center items-center my-4">
+                    <div
+                      id="cartEmpty"
+                      class="flex-col justify-center items-center my-4"
+                    >
                       <div>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -220,16 +223,54 @@
     <div class="space-y-32 container">
       <section class="container space-y-10 px-10">
         <div class="flex gap-5 flex-col items-start md:flex-row">
-          <button
-            class="btn px-5 bg-blue text-white hover:bg-blue-light hover:text-gray-100 border-blue-light border-4 rounded-xl"
-          >
-            NEW ARRIVALS
-          </button>
-          <button
-            class="btn px-5 bg-sludge text-white hover:bg-sludge-light hover:text-gray-100 border-sludge-light border-4 rounded-xl"
-          >
-            WHAT’S TRENDING
-          </button>
+          <div>
+            <button
+              class="btn px-5 bg-blue text-white hover:bg-blue-light hover:text-gray-100 border-blue-light border-4 rounded-xl"
+            >
+              NEW ARRIVALS
+            </button>
+            <button
+              class="btn px-5 bg-sludge text-white hover:bg-sludge-light hover:text-gray-100 border-sludge-light border-4 rounded-xl"
+            >
+              WHAT’S TRENDING
+            </button>
+          </div>
+          <div>
+            <div class="dropdown dropdown-end">
+              <div tabindex="0" role="button" class="btn btn-circle">
+                <div class="indicator">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div
+                tabindex="0"
+                class="card card-compact dropdown-content bg-gray-100 z-[1] mt-3 w-80 shadow-xl"
+              >
+                <div class="card-body">
+                  <input
+                  type="text"
+                  placeholder="Model shoes"
+                  class="input input-bordered w-full max-w-xs" />
+                  <div class="card-actions">
+                    <button class="btn bg-blue text-white hover:bg-blue-light hover:text-gray-100 border-blue-light btn-block">Search</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <!-- show item -->
         <div
