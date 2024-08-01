@@ -4,7 +4,9 @@ const btnCart = document.getElementById("btnCart");
 const cartEmpty = document.getElementById("cartEmpty");
 const listCart = document.getElementById("listCart");
 const totalCart = document.getElementById("totalCart");
-
+const inputSearch = document.getElementById("inputFilter");
+const btnSearch = document.getElementById("btnSearch");
+let valueInput;
 // get data backend
 class Products {
   getproducts() {
@@ -15,7 +17,7 @@ class Products {
 // show data ui
 class UI {
   //Show products
-  displayProducts(products) {
+  static displayProducts(products) {
     let html = "";
     products.forEach((element) => {
       html += `
@@ -233,11 +235,10 @@ class UI {
         } else {
           const newData = dataItem.map((item) => {
             if (item.id === Number(e.target.dataset.down)) {
-              if(item.number >=2){
-
+              if (item.number >= 2) {
                 item.number -= 1;
-              }else{
-                alert("Error")
+              } else {
+                alert("Error");
               }
             }
             return item;
@@ -286,12 +287,28 @@ class Local {
   }
 }
 
+class Filter {
+  static searchInput(datas, value) {
+    let dataFilter = datas;
+    if (value) {
+      dataFilter = datas.filter((item) => {
+        return item.title.toLowerCase().includes(value.toLowerCase());
+      });
+      UI.displayProducts(dataFilter);
+    } else {
+      alert("Please fill in the search amount");
+      UI.displayProducts(dataFilter);
+    }
+
+    console.log(dataFilter);
+  }
+}
+
 //When the page loads
 document.addEventListener("DOMContentLoaded", () => {
   const product = new Products();
   const datas = product.getproducts();
-  const showItem = new UI();
-  showItem.displayProducts(datas);
+  UI.displayProducts(datas);
   Local.setlLocalStorage(datas);
   UI.addCartItem();
   UI.displayCart();
@@ -302,4 +319,21 @@ btnCart.addEventListener("click", () => {
   UI.showTotal();
   UI.eventDelete();
   UI.eventChangeNumber();
+});
+
+inputSearch.addEventListener("input", (e) => {
+  valueInput = e.target.value;
+  if (!valueInput) {
+    const products = new Products();
+    const datas = products.getproducts();
+    UI.displayProducts(datas);
+  }
+});
+
+btnSearch.addEventListener("click", (e) => {
+  e.preventDefault();
+  const products = new Products();
+  const datasSearch = products.getproducts();
+  Filter.searchInput(datasSearch, valueInput);
+  console.log(valueInput);
 });
