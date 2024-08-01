@@ -297,10 +297,7 @@ class Filter {
       UI.displayProducts(dataFilter);
     } else {
       alert("Please fill in the search amount");
-      UI.displayProducts(dataFilter);
     }
-
-    console.log(dataFilter);
   }
 }
 
@@ -321,6 +318,7 @@ btnCart.addEventListener("click", () => {
   UI.eventChangeNumber();
 });
 
+//check value
 inputSearch.addEventListener("input", (e) => {
   valueInput = e.target.value;
   if (!valueInput) {
@@ -330,10 +328,10 @@ inputSearch.addEventListener("input", (e) => {
   }
 });
 
+//event button search
 btnSearch.addEventListener("click", (e) => {
   e.preventDefault();
   const products = new Products();
   const datasSearch = products.getproducts();
   Filter.searchInput(datasSearch, valueInput);
-  console.log(valueInput);
 });
