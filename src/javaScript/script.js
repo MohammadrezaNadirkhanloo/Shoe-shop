@@ -6,6 +6,8 @@ const listCart = document.getElementById("listCart");
 const totalCart = document.getElementById("totalCart");
 const inputSearch = document.getElementById("inputFilter");
 const btnSearch = document.getElementById("btnSearch");
+const filterItemColor = document.querySelectorAll(".filterColor");
+
 let valueInput;
 // get data backend
 class Products {
@@ -295,8 +297,51 @@ class Filter {
         return item.title.toLowerCase().includes(value.toLowerCase());
       });
       UI.displayProducts(dataFilter);
+      UI.addCartItem();
+      UI.displayCart();
     } else {
       alert("Please fill in the search amount");
+    }
+  }
+  static filterColor(data, color) {
+    switch (color) {
+      case "White":
+        const dataColorWhite = data.filter((item) => {
+          return item.color === "White";
+        });
+        UI.displayProducts(dataColorWhite);
+        UI.addCartItem();
+        UI.displayCart();
+        break;
+      case "Red":
+        const dataColorRed = data.filter((item) => {
+          return item.color === "Red";
+        });
+        UI.displayProducts(dataColorRed);
+        UI.addCartItem();
+        UI.displayCart();
+        break;
+      case "Blue":
+        const dataColorBlue = data.filter((item) => {
+          return item.color === "Blue";
+        });
+        UI.displayProducts(dataColorBlue);
+        UI.addCartItem();
+        UI.displayCart();
+        break;
+      case "Purple":
+        const dataColorPurple = data.filter((item) => {
+          return item.color === "Purple";
+        });
+        UI.displayProducts(dataColorPurple);
+        UI.addCartItem();
+        UI.displayCart();
+        break;
+      default:
+        UI.displayProducts(data);
+        UI.addCartItem();
+        UI.displayCart();
+        break;
     }
   }
 }
@@ -325,6 +370,8 @@ inputSearch.addEventListener("input", (e) => {
     const products = new Products();
     const datas = products.getproducts();
     UI.displayProducts(datas);
+    UI.addCartItem();
+    UI.displayCart();
   }
 });
 
@@ -334,4 +381,13 @@ btnSearch.addEventListener("click", (e) => {
   const products = new Products();
   const datasSearch = products.getproducts();
   Filter.searchInput(datasSearch, valueInput);
+});
+
+filterItemColor.forEach((item) => {
+  item.addEventListener("click", (e) => {
+    const value = e.target.dataset.value;
+    const products = new Products();
+    const datasFilter = products.getproducts();
+    Filter.filterColor(datasFilter, value);
+  });
 });
