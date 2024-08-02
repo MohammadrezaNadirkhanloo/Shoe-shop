@@ -289,7 +289,9 @@ class Local {
   }
 }
 
+//filter items
 class Filter {
+  //filter search
   static searchInput(datas, value) {
     let dataFilter = datas;
     if (value) {
@@ -303,6 +305,8 @@ class Filter {
       alert("Please fill in the search amount");
     }
   }
+
+  //filter colors
   static filterColor(data, color) {
     switch (color) {
       case "White":
@@ -383,6 +387,7 @@ btnSearch.addEventListener("click", (e) => {
   Filter.searchInput(datasSearch, valueInput);
 });
 
+//event filter colors
 filterItemColor.forEach((item) => {
   item.addEventListener("click", (e) => {
     const value = e.target.dataset.value;
