@@ -21,3 +21,11 @@ Project objectives:
 - Object-oriented programming (OOP)
 - Tailwind
 - Daisy UI
+
+## *New Version (1.1.0)
+
+Added filter
+- Filter color
+- Search products
+
+
